@@ -1,0 +1,45 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title%} Home {% endblock %}
+
+{% block carousel %}
+  <div class="carousel-container">
+    <div class="carousel-text">
+      <h1>The best Fashion for you</h1>
+      <button class="btn">Sign-up</button>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block content %}
+<div class="category">
+  <div class="boys cat-img">
+    <img src="https://images.unsplash.com/photo-1594890455840-ded55e057632?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80" alt="MEN">
+    <div class="shade"><h3>Men</h3></div>
+    
+  </div>
+  <div class="girls cat-img">
+    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1534&q=80" alt="">
+    <div class="shade"><h3>Women</h3></div>
+  </div>
+</div>
+<div class="text-animation">
+  <p class="fun-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore, placeat!</p>
+</div>
+<div class="card-group">
+    {% for product in products %}
+          <div class="card">
+            <a href="{% url 'store:detail' product.id %}"><img src="{{ product.product_image.url}}" class="card-img" alt="{{ product.name }}"></a>
+
+            <div class="card-body">
+               <h5 class="card-title"><a href="{% url 'store:detail' product.id %}">{{ product.name | title }}</a></h5>
+              <p class="card-text">&#8358;{{ product.price }}</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn">Add to cart</button>
+            </div>
+          </div>
+    {% endfor %}
+  </div>
+{% endblock %}

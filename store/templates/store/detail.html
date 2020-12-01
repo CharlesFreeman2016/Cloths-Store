@@ -1,0 +1,33 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title%} {{details.name}} Detail {% endblock %}
+
+{% block content %}
+    <div class="large-card">
+        <div class="card-img">
+            <img src="{{details.product_image.url}}" alt="">
+        </div>
+        <div class="detail-text">
+            <div class="card-title">
+                <h1>{{details.name}}</h1>
+            </div>
+            <div class="card-details">
+                <div class="description">
+                    <p class="desc">{{details.description}}</p>
+                </div>
+                <div class="card-price">
+                    <h3>&#8358;{{details.price}}</h3>
+                </div>
+            </div>
+        </div>
+       
+        <div class="card-btn">
+            <button class="btn">Add to cart</button>
+        </div>
+    </div>
+   
+   
+     
+
+    
+{% endblock %}

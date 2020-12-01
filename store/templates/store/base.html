@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+    <title>CreativeFashion Store - {% block title%}{% endblock %} </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+        <div class="container">
+          <div class="nav">
+            <a class="logo" href="{% url 'store:home' %}">CF</a>
+            <div class="top-navbar">
+              <div class="nav-item active">
+                <a href="{% url 'store:home' %}" class="item">Home</a>
+              </div>
+              <div class="nav-item">
+                <a href="#" class="item" id="srh">search</a>
+              </div>
+              <div class="nav-item">
+                <a href="#" class="item">Register</a>
+              </div>
+                <div class="nav-item">
+                <a href="#" class="item">Login</a>
+              </div>
+              <div class="nav-item">
+                <a href="#" class="item cart"><i class="small material-icons place">add_shopping_cart</i></a>
+                <div class="red-tag item-count ">0</div>
+              </div>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">   
+              <i class="small material-icons">menu</i>
+            </button>
+          </div>
+        </div>
+    </nav>
+    <div class="sidenav">
+      <i class="large material-icons close">close</i>
+      <div class="sidenav-item">
+        <a href="{% url 'store:home' %}" class="item">Home</a>
+      </div>
+      <div class="sidenav-item">
+        <a href="#" class="item" id="side_search">search</a>
+      </div>
+      <div class="nav-item">
+                <a href="#" class="item">Register</a>
+      </div>
+        <div class="nav-item">
+            <a href="#" class="item">Login</a>
+      </div>
+      <div class="sidenav-item cart">
+        <a href="#" class="item cart"><i class="small material-icons place">add_shopping_cart</i></a>
+        <div class="menu-tag item-count ">0</div>
+      </div>
+    </div>
+    <div class="main-search">
+      <div class="form">
+        <form action="{% url 'store:result' %}" method="GET">
+          {% csrf_token %}
+          <input type="text" name="q" id="q" placeholder="Search for trends">
+          <button class="btn" type="submit">Search</button>
+        </form>
+      </div>
+      <i class="large material-icons finish mega">close</i>
+    </div>
+    <div class="side-search-small">
+      <div class="form">
+        <form action="{% url 'store:result' %}" method="GET">
+          {% csrf_token %}
+          <input type="text" name="1" id="q" placeholder="Search for trends">
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+      </div>
+      <i class="large material-icons finish">close</i>
+    </div>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    {% block carousel %}{% endblock %}
+    {% block sidebar %}{% endblock %}
+    <div class="container">
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+      
+    <script src="{% static 'store/js/app.js' %}"></script>
+</body>
+</html>

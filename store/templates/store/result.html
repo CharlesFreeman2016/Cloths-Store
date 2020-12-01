@@ -1,0 +1,24 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% block title%} Result {% endblock %}
+
+{% block content %}
+<div class="titl">
+  <h1>Searched for: {{ results.name }}</h1>
+</div>
+<div class="card-group">
+    {% for product in results %}
+          <div class="card">
+            <a href="{% url 'store:detail' product.id %}"><img src="{{ product.product_image.url}}" class="card-img" alt="{{ product.name }}"></a>
+
+            <div class="card-body">
+               <h5 class="card-title"><a href="{% url 'store:detail' product.id %}">{{ product.name | title }}</a></h5>
+              <p class="card-text">&#8358;{{ product.price }}</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn">Add to cart</button>
+            </div>
+          </div>
+    {% endfor %}
+  </div>
+{% endblock %}
